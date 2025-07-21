@@ -43,7 +43,7 @@ const ReturnNav = () => {
         }
         // Send to opener window if available
         if (window.opener) {
-          window.opener.postMessage({ urls: urlToSend, type }, 'http://127.0.0.1:5174');
+          window.opener.postMessage({ urls: urlToSend, type }, 'https://canva-testing-frontend.vercel.app');
           window.close();
         } else {
           console.warn('No opener window to post message to.');
