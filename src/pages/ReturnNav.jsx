@@ -7,7 +7,7 @@ const ReturnNav = () => {
   const correlation_jwt = searchParams.get('correlation_jwt');
 
   const fetchUrls = async (token) => {
-    const response = await fetch('http://localhost:4000/navReturn', {
+    const response = await fetch(`https://canva-testing-backend.vercel.app/navReturn`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
