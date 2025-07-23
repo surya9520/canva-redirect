@@ -10,10 +10,11 @@ const AuthCallback = () => {
   const errorDescription = searchParams.get('error_description') ||'something went wrong';
 
   useEffect(() => {
-    alert(state)
     if (code && state) {
-        alert(code)
+        console.log(window.opener)
+        alert("hi")
       if (window.opener) {
+        alert("i am here")
         alert(code)
           window.opener.postMessage({code, state}, 'http://127.0.0.1:3000');
           window.close();
