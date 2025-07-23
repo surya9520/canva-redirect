@@ -1,4 +1,4 @@
-import React, { use } from 'react'
+import React, { use, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 
 const AuthCallback = () => {
