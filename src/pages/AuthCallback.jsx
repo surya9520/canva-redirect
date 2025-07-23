@@ -10,6 +10,7 @@ const AuthCallback = () => {
   const errorDescription = searchParams.get('error_description') ||'something went wrong';
 
   useEffect(() => {
+    alert(code)
     if (code && state) {
         alert(code)
       if (window.opener) {
