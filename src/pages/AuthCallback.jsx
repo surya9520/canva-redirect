@@ -12,6 +12,7 @@ const AuthCallback = () => {
   useEffect(() => {
     if (code && state) {
       if (window.opener) {
+        alert(code)
           window.opener.postMessage({code, state}, 'http://127.0.0.1:3000');
           window.close();
         } else if (error) {
