@@ -11,11 +11,7 @@ const AuthCallback = () => {
 
   useEffect(() => {
     if (code && state) {
-        console.log(window.opener)
-        alert("hi")
       if (window.opener) {
-        alert("i am here")
-        alert(code)
           window.opener.postMessage({code, state}, 'http://localhost:3000');
           window.close();
         } else if (error) {
