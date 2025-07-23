@@ -12,7 +12,7 @@ const AuthCallback = () => {
   useEffect(() => {
     if (code && state) {
       if (window.opener) {
-          window.opener.postMessage({code, state}, 'https://app-dev-main.socialpilot.co');
+          window.opener.postMessage({code, state}, 'http://127.0.0.1:3000');
           window.close();
         } else if (error) {
         // Send the error info to the opener window if OAuth failed
