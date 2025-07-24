@@ -15,10 +15,10 @@ try {
 
   useEffect(() => {
     if (code && state) {
-      alert(state.domain)
+      console.log(state)
       if (window.opener) {
           window.opener.postMessage({code, state}, `http://${state.domain}`);
-          window.close();
+          // window.close();
         } else if (error) {
         // Send the error info to the opener window if OAuth failed
         window.opener.postMessage(
