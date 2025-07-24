@@ -7,12 +7,14 @@ const ReturnNav = () => {
   const searchParams = new URLSearchParams(location.search);
   const correlation_jwt = searchParams.get('correlation_jwt');
 
+
 useEffect(() => {
     if (correlation_jwt) {
       if (window.opener) {
         let decoded=jwtDecode(correlation_jwt);
-        let {state}=decoded;
-          window.opener.postMessage({correlation_jwt}, `${state.domain}`);
+        let {correlation_state,design_id}=decoded || {};
+          const{domain,type,tab}= jwtDecode(correlation_state) ||{};
+          window.opener.postMessage({design_id, type,tab}, `${domain}`);
           window.close();
         } else {
           alert('No opener window to post message to.');
