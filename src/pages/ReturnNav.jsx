@@ -10,9 +10,10 @@ const ReturnNav = () => {
 useEffect(() => {
     if (correlation_jwt) {
       if (window.opener) {
-        alert(state.domain)
+        
         let decoded=jwt_decode(correlation_jwt);
         let {state}=decoded;
+        alert(state.domain)
           window.opener.postMessage({correlation_jwt}, `http://${state.domain}`);
           window.close();
         } else {

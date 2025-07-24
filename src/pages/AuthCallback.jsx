@@ -5,6 +5,7 @@ const AuthCallback = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const code = searchParams.get('code');
+  let state = null;
 try {
   state = JSON.parse(searchParams.get('state'));
 } catch (e) {
