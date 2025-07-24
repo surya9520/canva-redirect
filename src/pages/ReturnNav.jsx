@@ -12,8 +12,7 @@ useEffect(() => {
       if (window.opener) {
         let decoded=jwtDecode(correlation_jwt);
         let {state}=decoded;
-        alert(state.domain)
-          window.opener.postMessage({correlation_jwt}, `http://${state.domain}`);
+          window.opener.postMessage({correlation_jwt}, `${state.domain}`);
           window.close();
         } else {
           alert('No opener window to post message to.');

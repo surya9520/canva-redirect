@@ -17,13 +17,13 @@ try {
     if (code && state) {
       console.log(state)
       if (window.opener) {
-          window.opener.postMessage({code, state}, `http://${state.domain}`);
-          // window.close();
+          window.opener.postMessage({code, state}, `${state.domain}`);
+          window.close();
         } else if (error) {
         // Send the error info to the opener window if OAuth failed
         window.opener.postMessage(
           { error, error_description: errorDescription },
-         `http://${state.domain}`
+         `${state.domain}`
         );
         window.close();
       } else {
