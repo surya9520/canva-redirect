@@ -12,9 +12,9 @@ useEffect(() => {
     if (correlation_jwt) {
       if (window.opener) {
         let decoded=jwtDecode(correlation_jwt);
-        let {correlation_state,design_id}=decoded || {};
+        let {correlation_state,design_id:designId}=decoded || {};
           const{domain,type,tab}= jwtDecode(correlation_state) ||{};
-          window.opener.postMessage({design_id, type,tab}, `${domain}`);
+          window.opener.postMessage({designId, type,tab}, `${domain}`);
           window.close();
         } else {
           alert('No opener window to post message to.');
