@@ -1,12 +1,15 @@
-import React, { use, useEffect } from 'react'
+import React, {useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 
 const AuthCallback = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const code = searchParams.get('code');
-  const state = JSON.parse(searchParams.get('state'));
-  const error = searchParams.get('error');
+try {
+  state = JSON.parse(searchParams.get('state'));
+} catch (e) {
+  console.error('Invalid state');
+}  const error = searchParams.get('error');
   const errorDescription = searchParams.get('error_description') ||'something went wrong';
 
   useEffect(() => {
