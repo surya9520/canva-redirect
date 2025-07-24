@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 
 const ReturnNav = () => {
   const location = useLocation();
@@ -10,7 +10,7 @@ const ReturnNav = () => {
 useEffect(() => {
     if (correlation_jwt) {
       if (window.opener) {
-        let decoded=jwt_decode(correlation_jwt);
+        let decoded=jwtDecode(correlation_jwt);
         let {state}=decoded;
         alert(state.domain)
           window.opener.postMessage({correlation_jwt}, `http://${state.domain}`);
