@@ -15,14 +15,15 @@ useEffect(() => {
         let {correlation_state,design_id:designId}=decoded || {};
           const{domain,type,tab}= jwtDecode(correlation_state) ||{};
           window.opener.postMessage({designId, type,tab}, `${domain}`);
-          window.close();
+          console.log(domain,type,tab)
+          // window.close();
         } else {
           alert('No opener window to post message to.');
-          window.close();
+          // window.close();
         }
     }else{
       alert('No correlation_jwt found.');
-      window.close();
+      // window.close();
     }
   }, []);
 
