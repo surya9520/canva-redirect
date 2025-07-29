@@ -16,7 +16,7 @@ useEffect(() => {
         let {correlation_state,design_id:designId}=decoded || {};
           const{domain,type,tab,category}= jwtDecode(correlation_state) ||{};
           window.opener.postMessage({designId, type,tab,category}, `${domain}`);
-          // window.close();
+          window.close();
         } else {
           alert('No opener window to post message to.');
           window.close();
