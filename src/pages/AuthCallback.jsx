@@ -8,6 +8,7 @@ const AuthCallback = () => {
   let state = null;
 try {
   state = JSON.parse(searchParams.get('state'));
+  console.log(state,"State")
 } catch (e) {
   console.error('Invalid state');
 }  const error = searchParams.get('error');
