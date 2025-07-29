@@ -11,6 +11,7 @@ const ReturnNav = () => {
 useEffect(() => {
     if (correlation_jwt) {
       if (window.opener) {
+         console.log(window.opener.location.href); 
         let decoded=jwtDecode(correlation_jwt);
         let {correlation_state,design_id:designId}=decoded || {};
           const{domain,type,tab,category}= jwtDecode(correlation_state) ||{};
