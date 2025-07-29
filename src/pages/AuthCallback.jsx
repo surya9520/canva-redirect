@@ -18,6 +18,7 @@ try {
     if (code && state) {
       console.log(state)
       if (window.opener) {
+        alert('window.opener')
           window.opener.postMessage({code, state}, `${state.domain}`);
           window.close();
         } else if (error) {
