@@ -18,10 +18,9 @@ try {
     if (code && state) {
       console.log(state)
       if (window.opener) {
-        console.log(window.opener);               // Should not be null
-        console.log(window.opener.location.href); // Throws error if cross-origin
+        console.log(window.opener);  
         console.log(state.domain)
-          window.opener.postMessage({code, state}, `${state.domain}`);
+          window.opener.postMessage({code, state}, `http://localhost:3000`);
           console.log("message has been sended")
           window.close();
         } else if (error) {
