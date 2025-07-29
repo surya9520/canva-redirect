@@ -18,8 +18,9 @@ try {
     if (code && state) {
       console.log(state)
       if (window.opener) {
-        alert('window.opener')
+        console.log(state.domain)
           window.opener.postMessage({code, state}, `${state.domain}`);
+          console.log("message has been sended")
           window.close();
         } else if (error) {
         // Send the error info to the opener window if OAuth failed
