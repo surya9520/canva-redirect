@@ -20,7 +20,6 @@ try {
       if (window.opener) {
         console.log(window.opener);               // Should not be null
         console.log(window.opener.location.href); // Throws error if cross-origin
-
         console.log(state.domain)
           window.opener.postMessage({code, state}, `${state.domain}`);
           console.log("message has been sended")
