@@ -27,7 +27,7 @@ try {
         // Send the error info to the opener window if OAuth failed
         window.opener.postMessage(
           { error, error_description: errorDescription },
-         `${state.domain}`
+         `${state.domain.domain}`
         );
         window.close();
       } else {
