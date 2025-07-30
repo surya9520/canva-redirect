@@ -23,6 +23,7 @@ const AuthCallback = () => {
 
   useEffect(() => {
     if (!state) {
+      if(window.opener)
        window.opener.postMessage(
           { error, errorMessage: "something went wrong" },
           state.domain,
@@ -32,7 +33,9 @@ const AuthCallback = () => {
     }
 
     if (window.opener) {
+      console.log("window.opener");
       if (code) {
+        console.log({code, state,domain:state.domain});
         window.opener.postMessage({ code, state }, state.domain);
       } else if (error) {
         window.opener.postMessage(
@@ -41,8 +44,8 @@ const AuthCallback = () => {
         );
       }
     }
-
-    window.close();
+    console.log()
+    // window.close();
   }, []);
 
   return (
