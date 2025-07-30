@@ -2,41 +2,47 @@ import React, {useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 
 const AuthCallback = () => {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
+  const { search } = useLocation();
+  const searchParams = new URLSearchParams(search);
   const code = searchParams.get('code');
+  const error = searchParams.get('error');
+  const errorDescription =
+    searchParams.get('error_description') ||
+    'Connect canva account to continue';
+
   let state = null;
-try {
-  state = JSON.parse(searchParams.get('state'));
-  console.log(state,"State")
-} catch (e) {
-  console.error('Invalid state');
-}  const error = searchParams.get('error');
-  const errorDescription = searchParams.get('error_description') ||'something went wrong';
+  try {
+    const stateParam = searchParams.get('state');
+    if (stateParam) {
+      state = JSON.parse(stateParam);
+      console.log('State:', state);
+    }
+  } catch (e) {
+    console.error('Invalid state JSON');
+  }
 
   useEffect(() => {
-    if (code && state) {
-      console.log(state)
-      if (window.opener) {
-        console.log(window.opener);  
-        console.log(state.domain)
-          window.opener.postMessage({code, state}, `http://localhost:3000`);
-          console.log("message has been sended")
-          window.close();
-        }  else {
-          console.warn('No opener window to post message to.');
-          window.close();
-        }
-    } else if(error && state){
-      if(window.opener){
-         window.opener.postMessage(
-          { error, errorMessage: "Please connect Canva to continue." },
-         `${state.domain.domain}`
+    if (!state) {
+       window.opener.postMessage(
+          { error, errorMessage: "something went wrong" },
+          state.domain,
         );
-        window.close();
-      }
-    
+      window.close();
+      return;
     }
+
+    if (window.opener) {
+      if (code) {
+        window.opener.postMessage({ code, state }, state.domain);
+      } else if (error) {
+        window.opener.postMessage(
+          { error, errorMessage: errorDescription },
+          state.domain,
+        );
+      }
+    }
+
+    window.close();
   }, []);
 
   return (
