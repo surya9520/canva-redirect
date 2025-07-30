@@ -30,7 +30,7 @@ try {
     } else if(error && state){
       if(window.opener){
          window.opener.postMessage(
-          { error, error_description: errorDescription },
+          { error, errorMessage: "Please connect Canva to continue." },
          `${state.domain.domain}`
         );
         window.close();
