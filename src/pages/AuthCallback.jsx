@@ -33,9 +33,7 @@ const AuthCallback = () => {
     }
 
     if (window.opener) {
-      console.log("window.opener");
       if (code) {
-        console.log({code, state,domain:state.domain});
         window.opener.postMessage({ code, state }, state.domain);
       } else if (error) {
         window.opener.postMessage(
@@ -44,8 +42,8 @@ const AuthCallback = () => {
         );
       }
     }
-    console.log()
-    // window.close();
+
+    window.close();
   }, []);
 
   return (
