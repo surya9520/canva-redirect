@@ -23,16 +23,19 @@ try {
           window.opener.postMessage({code, state}, `http://localhost:3000`);
           console.log("message has been sended")
           window.close();
-        } else if (error) {
-        // Send the error info to the opener window if OAuth failed
-        window.opener.postMessage(
+        }  else {
+          console.warn('No opener window to post message to.');
+          window.close();
+        }
+    } else if(error && state){
+      if(window.opener){
+         window.opener.postMessage(
           { error, error_description: errorDescription },
          `${state.domain.domain}`
         );
         window.close();
-      } else {
-          console.warn('No opener window to post message to.');
-        }
+      }
+    
     }
   }, []);
 
